@@ -1,8 +1,5 @@
-I'll incorporate the detail that the `prepnote` script can be added to either `bashrc` or `zshrc` files for convenience. Here's the updated README.md template for GitHub, including this addition:
 
----
-
-# Project Name: Dynamic PrepNote Script
+# Dynamic PrepNote Script
 
 ## Description
 
