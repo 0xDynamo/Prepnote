@@ -1,0 +1,29 @@
+# Configuration for the prepnote setup script
+
+# Path to your Obsidian notes vault where your notes are stored.
+# Suggestion: This should be the main directory where you keep your Obsidian notes.
+OBSIDIAN_NOTES_PATH="/path/to/your/obsidian/vault"
+
+# Path where you want to store the template folder within your notes vault.
+# Suggestion: This should be a subdirectory inside your notes vault for storing templates.
+TEMPLATE_PATH="/path/to/your/obsidian/vault/template"
+
+# General working directory path.
+# Suggestion: This is the base directory for all your project subdirectories (e.g., HackTheBox, Proving Grounds, etc.).
+WORKING_DIR="/path/to/your/working/directory"
+
+# Path for your HackTheBox working folder.
+# Suggestion: Create a dedicated directory under your working directory for HackTheBox projects.
+HTB_PATH="/path/to/your/working/directory/htb"
+
+# Path for your Proving Grounds working folder.
+# Suggestion: Create a dedicated directory under your working directory for Proving Grounds projects.
+PG_PATH="/path/to/your/working/directory/pg"
+
+# Path for your OSCP Challenge Labs working folder.
+# Suggestion: Create a dedicated directory under your working directory for OSCP-related projects.
+OSCP_PATH="/path/to/your/working/directory/oscp"
+
+# Path for your OSCP AD Challenge Labs working folder.
+# Suggestion: Create a dedicated directory under your working directory for OSCP Active Directory projects.
+OSCP_AD_PATH="/path/to/your/working/directory/ad"
