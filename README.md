@@ -1,90 +1,89 @@
 
-# Dynamic PrepNote Script
+# Prepnote Setup Script
 
-## Description
+Prepnote is a setup script designed to streamline the organization of penetration testing notes and project folders. It helps create directories for notes, templates, and specific pentesting projects (e.g., HackTheBox, Proving Grounds, OSCP). This tool is essential for red teamers, security researchers, or anyone looking for an efficient way to manage pentesting workflows.
 
-The `prepnote` script is a customizable bash utility designed to streamline the setup process for various projects, focusing especially on penetration testing and cybersecurity tasks. It automates the creation of a structured directory layout for showcasing achievements and organizing project efforts efficiently. This script is particularly useful for individuals engaging in platforms like Hack The Box or for any project requiring an organized file structure. It assumes that the Showcase directory is a duplicate of the Local Notes folder from Obsidian, facilitating seamless integration with your knowledge management practices.
+## Features
+- Interactive setup script (`setup_prepnote.sh`) to configure project paths.
+- Automated copying of a template folder to a specified location.
+- Creation of directories for specific pentesting projects.
+- Option to create a symlink for easier script access.
 
-## Requirements
-
-- Bash or Zsh shell environment
-- Standard Unix utilities (`cp`, `mkdir`, `echo`, `awk`)
+## Prerequisites
+- Bash shell environment.
+- Appropriate permissions for creating directories and copying files.
+- The `setup_prepnote.sh` and `prepnote.sh` scripts, along with a `Template` folder.
 
 ## Installation
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/prepnote.git
+    cd prepnote
+    ```
 
-To make the `prepnote` function available in your shell environment, add it to your `.bashrc` or `.zshrc` file. This makes the function accessible anytime you open a terminal.
+2. Copy and rename the provided `template_config.txt` file:
+    ```bash
+    cp template_config.txt config.txt
+    ```
 
-1. Open your `.bashrc` or `.zshrc` file in a text editor. For example:
-   ```bash
-   nano ~/.bashrc
-   ```
-   or
-   ```zsh
-   nano ~/.zshrc
-   ```
-
-2. Copy and paste the `prepnote` function into the file.
-
-3. Save the file and exit the editor.
-
-4. Apply the changes by sourcing your `.bashrc` or `.zshrc` file:
-   ```bash
-   source ~/.bashrc
-   ```
-   or
-   ```zsh
-   source ~/.zshrc
-   ```
+3. Edit `config.txt` to pre-fill the paths for your setup:
+    ```bash
+    nano config.txt
+    ```
+   **Note:** Filling out `config.txt` beforehand can expedite the interactive setup process.
 
 ## Usage
 
-### How to Use
-
-Invoke the `prepnote` script by calling it with the desired project name as an argument:
-
+### Running `setup_prepnote.sh`
+Run the `setup_prepnote.sh` script to configure your setup interactively:
 ```bash
-prepnote <project_name>
+./setup_prepnote.sh
+```
+- The script will guide you through setting paths for your Obsidian notes, template storage, and project directories.
+- If a path does not exist, the script will prompt you to create it.
+- The script copies the template folder to your designated template path if not already present.
+
+### Running `prepnote.sh`
+After completing the setup, use `prepnote.sh` to create new project folders:
+```bash
+./prepnote.sh [OPTIONS] FOLDER_NAME
 ```
 
-The script performs the following actions:
+#### Options:
+- `-h` : Create a project folder under HackTheBox.
+- `-p` : Create a project folder under Proving Grounds.
+- `-o` : Create a project folder under OSCP Challenge Labs.
+- `-a` : Create a project folder under OSCP AD Challenge Labs.
+- `--help` : Display usage information.
 
-- Creates a new project folder in two specified locations with adaptable naming conventions: one for showcasing (with the first letter capitalized) and another for project files (in lowercase).
-- Duplicates a template directory (your Local Notes from Obsidian for the Showcase part) into the showcase directory.
-- Establishes a structured set of directories within the project files location, catering to various project needs.
-
-### Function Template
-
-Here's a customizable template of the `prepnote` function:
-
+### Example
+To create a new HackTheBox project folder:
 ```bash
-prepnote() {
-  # Define your template and destination directories
-  local template_dir="<path_to_template>"
-  local showcase_destination="<path_to_showcase_dir>"
-  local project_destination="<path_to_project_dir>"
-  
-  local new_folder_name="$1"
-  # Customize the naming convention here
-  local showcase_folder_name=$(echo "$new_folder_name" | awk '{customize this part}')
-  local project_folder_name=$(echo "$new_folder_name" | awk '{customize this part}')
-  
-  # Operations for the Showcase directory
-  cp -r "$template_dir" "$showcase_destination/$showcase_folder_name"
-  
-  # Operations for the project files directory
-  mkdir -p "$project_destination/$project_folder_name"
-  # Add subdirectories as needed
-  mkdir -p "$project_destination/$project_folder_name/subdirectory1"
-  # Continue for other subdirectories...
-  
-  echo "Setup completed for $showcase_destination/$showcase_folder_name"
-  echo "Setup completed for $project_destination/$project_folder_name"
-}
+./prepnote.sh -h NewMachineName
 ```
 
-Adjust `<path_to_template>`, `<path_to_showcase_dir>`, and `<path_to_project_dir>` with the actual paths on your system. Customize the `awk` commands to format your folder names according to your preferences.
+## Optional Step: Create a Symlink
+To make `prepnote` accessible from any directory, create a symlink:
+```bash
+sudo ln -s /path/to/your/prepnote.sh /usr/local/bin/prepnote
+```
+Now, you can run:
+```bash
+prepnote -h NewMachineName
+```
 
-## Contributing
+## Template Directory
+Ensure that your `Template` folder is in the root directory of the project. This folder should contain any files or structures you want to copy when creating a new project folder.
 
-You should of course adapt this to your liking and environment. This is a template
----
+## Debugging & Troubleshooting
+- If the script outputs an error regarding missing paths, ensure the `config.txt` file is correctly filled out.
+- Check the permissions if there are issues with creating directories or copying templates.
+
+## License
+This project is licensed under the MIT License.
+
+## Contributions
+Contributions are welcome! Feel free to fork the repository and submit a pull request with improvements.
+
+## Contact
+For any questions or support, contact [your email or GitHub contact link].
