@@ -1,5 +1,5 @@
 
-# Prepnote Setup Script
+# Prepnote
 
 Prepnote is a setup script designed to streamline the organization of penetration testing notes and project folders. It helps create directories for notes, templates, and specific pentesting projects (e.g., HackTheBox, Proving Grounds, OSCP). This tool is essential for red teamers, security researchers, or anyone looking for an efficient way to manage pentesting workflows.
 
