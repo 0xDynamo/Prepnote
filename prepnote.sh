@@ -3,13 +3,6 @@
 # Path to the configuration file
 CONFIG_FILE="$(dirname "$0")/config.txt"
 
-# Read configuration file
-if [[ -f "$CONFIG_FILE" ]]; then
-  source "$CONFIG_FILE"
-else
-  echo "Error: Configuration file not found at $CONFIG_FILE"
-  exit 1
-fi
 
 # Flags to determine the mode of operation
 hackthebox_flag=false
@@ -66,6 +59,20 @@ done
 
 # Display help message if --help is used
 if [[ "$show_help" == true ]]; then
+
+echo ""
+echo ""
+
+echo '    ____                                   _          ____                              __        
+   / __ \__  ______  ____ _____ ___  ____ ( )_____   / __ \________  ____  ____  ____  / /____   
+  / / / / / / / __ \/ __ `/ __ `__ \/ __ \|// ___/  / /_/ / ___/ _ \/ __ \/ __ \/ __ \/ __/ _ \  
+ / /_/ / /_/ / / / / /_/ / / / / / / /_/ / (__  )  / ____/ /  /  __/ /_/ / / / / /_/ / /_/  __/ 
+/_____/\__, /_/ /_/\__,_/_/ /_/ /_/\____/ /____/  /_/   /_/   \___/ .___/_/ /_/\____/\__/\___/  
+      /____/                                                     /_/                            '
+
+echo ""
+echo ""
+
   echo "Usage: prepnote [OPTIONS] FOLDER_NAME"
   echo "Options:"
   echo "  -h    Copy template to 'HackTheBox' destination."
@@ -77,6 +84,8 @@ if [[ "$show_help" == true ]]; then
   echo "  --help Display this help message."
   exit 0
 fi
+
+
 
 # Ensure a folder name is provided
 if [[ -z "$folder_name" ]]; then
