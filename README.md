@@ -1,12 +1,12 @@
 
 # Prepnote
 
-Prepnote is a setup script designed to streamline the organization of penetration testing notes and project folders. It helps create directories for notes, templates, and specific pentesting projects (e.g., HackTheBox, Proving Grounds, OSCP). This tool is essential for red teamers, security researchers, or anyone looking for an efficient way to manage pentesting workflows.
+Prepnote is a setup script designed to streamline the organization of penetration testing notes and project folders. It helps create directories for notes, templates, and specific pentesting projects (e.g., HackTheBox, Proving Grounds, OSCP, Exam, and Training). This tool is essential for red teamers, security researchers, or anyone looking for an efficient way to manage pentesting workflows.
 
 ## Features
 - Interactive setup script (`setup_prepnote.sh`) to configure project paths.
 - Automated copying of a template folder to a specified location.
-- Creation of directories for specific pentesting projects.
+- Creation of directories for specific pentesting projects, including Exam and Training environments.
 - Option to create a symlink for easier script access.
 
 ## Prerequisites
@@ -54,12 +54,19 @@ After completing the setup, use `prepnote.sh` to create new project folders:
 - `-p` : Create a project folder under Proving Grounds.
 - `-o` : Create a project folder under OSCP Challenge Labs.
 - `-a` : Create a project folder under OSCP AD Challenge Labs.
+- `-e` : Create a project folder under OSCP Exam environment with AD and challenge lab machines.
+- `-t` : Create a project folder under OSCP Training environment with AD and challenge lab machines.
 - `--help` : Display usage information.
 
 ### Example
 To create a new HackTheBox project folder:
 ```bash
 ./prepnote.sh -h NewMachineName
+```
+
+To create a new OSCP Training environment:
+```bash
+./prepnote.sh -t TrainingSession
 ```
 
 ## Optional Step: Create a Symlink

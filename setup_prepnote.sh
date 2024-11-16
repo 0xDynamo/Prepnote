@@ -31,9 +31,12 @@ fi
 # Function to prompt for path input and create it if it doesn't exist
 prompt_for_path() {
   local prompt_message="$1"
+  local current_value="$2"
   local path_variable
+
   while true; do
-    read -p "$prompt_message" path_variable
+    read -p "$prompt_message (current: ${current_value:-not set}): " path_variable
+    path_variable=${path_variable:-$current_value}  # Use the current value if Enter is pressed
     if [[ -z "$path_variable" ]]; then
       echo "Error: Path cannot be empty. Please enter a valid path."
     elif [[ -d "$path_variable" ]]; then
@@ -59,7 +62,7 @@ prompt_for_path() {
 }
 
 # Interactive prompts for setting up paths
-echo "Please provide the paths for your setup. Press Enter to keep an existing path."
+echo "Please provide the paths for your setup. Press Enter to keep the current/suggested value."
 echo ""
 
 # Read current values from config file if it exists
@@ -68,8 +71,16 @@ if [[ -f "$CONFIG_FILE" ]]; then
 fi
 
 # Prompt for paths and assign them to variables
-obsidian_notes_path=$(prompt_for_path "Enter the path to your Obsidian notes vault (where your notes are stored) (current: ${OBSIDIAN_NOTES_PATH:-not set}): ")
-template_path=$(prompt_for_path "Enter the path where you want to store the template folder within your notes vault (e.g., for copying templates into new notes) (current: ${TEMPLATE_PATH:-not set}): ")
+obsidian_notes_path=$(prompt_for_path "Enter the path to your Obsidian notes vault" "$OBSIDIAN_NOTES_PATH")
+template_path=$(prompt_for_path "Enter the path where you want to store the template folder within your notes vault" "$TEMPLATE_PATH")
+working_dir=$(prompt_for_path "Enter the path for your general working directory" "$WORKING_DIR")
+exam_path=$(prompt_for_path "Enter the path for your OSCP Exam working folder" "$EXAM_PATH")
+training_path=$(prompt_for_path "Enter the path for your OSCP Training working folder" "$TRAINING_PATH")
+htb_path=$(prompt_for_path "Enter the path for your HackTheBox working folder" "$HTB_PATH")
+pg_path=$(prompt_for_path "Enter the path for your Proving Grounds working folder" "$PG_PATH")
+oscp_path=$(prompt_for_path "Enter the path for your OSCP Challenge Labs working folder" "$OSCP_PATH")
+oscp_ad_path=$(prompt_for_path "Enter the path for your OSCP AD Challenge Labs working folder" "$OSCP_AD_PATH")
+
 
 # Copy the default template to the designated location if needed
 if [[ -d "$DEFAULT_TEMPLATE_DIR" ]]; then
@@ -91,20 +102,13 @@ else
   exit 1
 fi
 
-# Prompt for the general working directory
-working_dir=$(prompt_for_path "Enter the path for your general working directory (this will be the base for specific subdirectories) (current: ${WORKING_DIR:-not set}): ")
-
-# Prompt for specific subdirectories under the working directory
-htb_path=$(prompt_for_path "Enter the path for your HackTheBox working folder (where you work on HackTheBox projects) (current: ${HTB_PATH:-$working_dir/htb}): ")
-pg_path=$(prompt_for_path "Enter the path for your Proving Grounds working folder (where you work on Proving Grounds projects) (current: ${PG_PATH:-$working_dir/pg}): ")
-oscp_path=$(prompt_for_path "Enter the path for your OSCP Challenge Labs working folder (where you work on OSCP projects) (current: ${OSCP_PATH:-$working_dir/oscp}): ")
-oscp_ad_path=$(prompt_for_path "Enter the path for your OSCP AD Challenge Labs working folder (where you work on Active Directory OSCP projects) (current: ${OSCP_AD_PATH:-$working_dir/ad}): ")
 
 # Debugging statements to ensure variables are set correctly
-
 echo ""
 echo "Debug: OBSIDIAN_NOTES_PATH='$obsidian_notes_path'"
 echo "Debug: TEMPLATE_PATH='$template_path'"
+echo "Debug: EXAM_PATH='$exam_path'"
+echo "Debug: TRAINING_PATH='$training_path'"
 echo "Debug: WORKING_DIR='$working_dir'"
 echo "Debug: HTB_PATH='$htb_path'"
 echo "Debug: PG_PATH='$pg_path'"
@@ -117,40 +121,31 @@ cat <<EOL > "$CONFIG_FILE"
 # Configuration for the prepnote setup script
 
 # Path to your Obsidian notes vault where your notes are stored.
-# Suggestion: This should be the main directory where you keep your Obsidian notes.
 OBSIDIAN_NOTES_PATH="$obsidian_notes_path"
 
-
 # Path where you want to store the template folder within your notes vault.
-# Suggestion: This should be a subdirectory inside your notes vault for storing templates.
 TEMPLATE_PATH="$template_path"
 
+# Path for your OSCP Exam working folder.
+EXAM_PATH="$exam_path"
+
+# Path for your OSCP Training working folder.
+TRAINING_PATH="$training_path"
 
 # General working directory path.
-# Suggestion: This is the base directory for all your project subdirectories (e.g., HackTheBox, Proving Grounds, etc.).
 WORKING_DIR="$working_dir"
 
-
 # Path for your HackTheBox working folder.
-# Suggestion: Create a dedicated directory under your working directory for HackTheBox projects.
 HTB_PATH="$htb_path"
 
-
 # Path for your Proving Grounds working folder.
-# Suggestion: Create a dedicated directory under your working directory for Proving Grounds projects.
 PG_PATH="$pg_path"
 
-
 # Path for your OSCP Challenge Labs working folder.
-# Suggestion: Create a dedicated directory under your working directory for OSCP-related projects.
 OSCP_PATH="$oscp_path"
 
-
 # Path for your OSCP AD Challenge Labs working folder.
-# Suggestion: Create a dedicated directory under your working directory for OSCP Active Directory projects.
 OSCP_AD_PATH="$oscp_ad_path"
-
-
 EOL
 
 # Check if the paths were written correctly
@@ -164,8 +159,7 @@ fi
 
 echo ""
 echo ""
-echo "You can run this script again to modify paths or manually edit $CONFIG_FILE if needed."/home/dynamo/workspace/github/prepnote/working
-
+echo "You can run this script again to modify paths or manually edit $CONFIG_FILE if needed."
 
 # Prompt the user to create a symlink to /usr/local/bin
 read -p "Would you like to create a symlink for 'prepnote.sh' in /usr/local/bin for easier access? (y/n) [N]: " symlink_choice
