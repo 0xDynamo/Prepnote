@@ -162,12 +162,13 @@ echo ""
 echo "You can run this script again to modify paths or manually edit $CONFIG_FILE if needed."
 
 # Prompt the user to create a symlink to /usr/local/bin
-read -p "Would you like to create a symlink for 'prepnote.sh' in /usr/local/bin for easier access? (y/n) [N]: " symlink_choice
+read -p "Would you like to create a symlink for 'prepnote.sh' and 'config.txt' in /usr/local/bin for easier access? (y/n) [N]: " symlink_choice
 symlink_choice=${symlink_choice:-N}
 if [[ "$symlink_choice" =~ ^[Yy]$ ]]; then
   sudo ln -s "$SCRIPT_DIR/prepnote.sh" /usr/local/bin/prepnote
+  sudo cp "$(dirname "$0")/config.txt" /usr/local/bin/config.txt
   if [[ $? -eq 0 ]]; then
-    echo "Symlink created successfully. You can now run 'prepnote' from anywhere."
+    echo "Symlinks created successfully. You can now run 'prepnote' from anywhere."
   else
     echo "Error: Failed to create the symlink. Please check permissions or try again."
   fi
