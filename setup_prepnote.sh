@@ -7,11 +7,11 @@ DEFAULT_TEMPLATE_DIR="$SCRIPT_DIR/Template"  # Path to the Template folder in th
 echo ""
 echo ""
 
-echo '    ____                                   _          ____                              __          _____      __            
-   / __ \__  ______  ____ _____ ___  ____ ( )_____   / __ \________  ____  ____  ____  / /____     / ___/___  / /___  ______ 
-  / / / / / / / __ \/ __ `/ __ `__ \/ __ \|// ___/  / /_/ / ___/ _ \/ __ \/ __ \/ __ \/ __/ _ \    \__ \/ _ \/ __/ / / / __ \
- / /_/ / /_/ / / / / /_/ / / / / / / /_/ / (__  )  / ____/ /  /  __/ /_/ / / / / /_/ / /_/  __/   ___/ /  __/ /_/ /_/ / /_/ /
-/_____/\__, /_/ /_/\__,_/_/ /_/ /_/\____/ /____/  /_/   /_/   \___/ .___/_/ /_/\____/\__/\___/   /____/\___/\__/\__,_/ .___/ 
+echo '      ____                                   _          ____                              __          _____      __            
+     / __ \__  ______  ____ _____ ___  ____ ( )_____   / __ \________  ____  ____  ____  / /____     / ___/___  / /___  ______ 
+    / / / / / / / __ \/ __ / __ __ \/ __ \|// ___/  / /_/ / ___/ _ \/ __ \/ __ \/ __ \/ __/ _ \    \__ \/ _ \/ __/ / / / __ \
+   / /_/ / /_/ / / / / /_/ / / / / / / /_/ / (__  )  / ____/ /  /  __/ /_/ / / / / /_/ / /_/  __/   ___/ /  __/ /_/ /_/ / /_/ /
+  /_____/\__, /_/ /_/\__,_/_/ /_/ /_/\____/ /____/  /_/   /_/   \___/ .___/_/ /_/\____/\__/\___/   /____/\___/\__/\__,_/ .___/ 
       /____/                                                     /_/                                                /_/      '
 
 echo ""
@@ -20,8 +20,8 @@ echo ""
 # Inform the user about the config.txt file
 echo ""
 echo "Note: The setup will be quicker if you fill out the 'config.txt' file with your paths beforehand."
-read -p "Do you wish to continue with the interactive setup? (y/n) [N]: " continue_choice
-continue_choice=${continue_choice:-N}
+read -p "Do you wish to continue with the interactive setup? (Y/n) [Y]: " continue_choice
+continue_choice=${continue_choice:-Y}
 
 if [[ ! "$continue_choice" =~ ^[Yy]$ ]]; then
   echo "Exiting the setup. You can edit 'config.txt' manually and run this script again."
