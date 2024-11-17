@@ -93,4 +93,4 @@ This project is licensed under the MIT License.
 Contributions are welcome! Feel free to fork the repository and submit a pull request with improvements.
 
 ## Contact
-For any questions or support, contact BytesizedSecurity@proton.me
+For any questions or support, contact BytesizedSecurity@proton.me or reach out on Youtube!
