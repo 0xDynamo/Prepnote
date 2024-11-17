@@ -123,30 +123,30 @@ boxes_destination_base=""
 
 # Determine the destination based on the selected flag
 if [[ "$exam_flag" == true ]]; then
-    destination="$OBSIDIAN_NOTES_PATH/OSCP/OSCP Exam"
+    destination="$OBSIDIAN_NOTES_PATH/Hacking-Journey/OSCP Exam"
     boxes_destination_base="$EXAM_PATH"
     machine_prefix=("AD_Set" "Challenge1" "Challenge2" "Challenge3")
     ad_subfolders=("Internal1" "Internal2" "Internal3")
 elif [[ "$training_flag" == true ]]; then
-    destination="$OBSIDIAN_NOTES_PATH/OSCP/OSCP Training"
+    destination="$OBSIDIAN_NOTES_PATH/Hacking-Journey/OSCP Training"
     boxes_destination_base="$TRAINING_PATH"
     machine_prefix=("AD_Set" "Challenge1" "Challenge2" "Challenge3")
     ad_subfolders=("Internal1" "Internal2" "Internal3")
 elif [[ "$ad_flag" == true ]]; then
-    destination="$OBSIDIAN_NOTES_PATH/OSCP/OSCP - AD Challenge Labs"
+    destination="$OBSIDIAN_NOTES_PATH/Hacking-Journey/OSCP - AD Challenge Labs"
     boxes_destination_base="$OSCP_AD_PATH"
     machine_prefix=("Machine1" "Machine2" "Machine3")
 elif [[ "$oscp_flag" == true ]]; then
-    destination="$OBSIDIAN_NOTES_PATH/OSCP/OSCP - Challenge Labs"
+    destination="$OBSIDIAN_NOTES_PATH/Hacking-Journey/OSCP - Challenge Labs"
     boxes_destination_base="$OSCP_PATH"
 elif [[ "$proving_flag" == true ]]; then
-    destination="$OBSIDIAN_NOTES_PATH/OSCP/Proving Grounds"
+    destination="$OBSIDIAN_NOTES_PATH/Hacking-Journey/Proving Grounds"
     boxes_destination_base="$PG_PATH"
 elif [[ "$hackthebox_flag" == true ]]; then
-    destination="$OBSIDIAN_NOTES_PATH/OSCP/HackTheBox"
+    destination="$OBSIDIAN_NOTES_PATH/Hacking-Journey/HackTheBox"
     boxes_destination_base="$HTB_PATH"
 else
-    destination="$OBSIDIAN_NOTES_PATH/OSCP/Showcase"
+    destination="$OBSIDIAN_NOTES_PATH/Hacking-Journey/Showcase"
     boxes_destination_base="$HTB_PATH"
     echo "No specific flag provided. Defaulting to 'Showcase' for recorded boxes intended for YouTube."
 fi
