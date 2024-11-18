@@ -167,6 +167,9 @@ if [[ "$ad_flag" == true || "$exam_flag" == true || "$training_flag" == true ]];
             
             # Create domain-enum.md file in AD_Set
             echo "# Recon" > "$machine_folder/Domain-Enum.md"
+            echo "" >> "$machine_folder/Domain-Enum.md"
+            echo "" >> "$machine_folder/Domain-Enum.md"
+            echo "# Bloodhound" >> "$machine_folder/Domain-Enum.md"
             echo "Created Domain-Enum.md file in: $machine_folder"
             
             # Create and populate Internal1, Internal2, Internal3 with templates

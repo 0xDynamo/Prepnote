@@ -56,6 +56,10 @@ After completing the setup, use `prepnote.sh` to create new project folders:
 - `-a` : Create a project folder under OSCP AD Challenge Labs.
 - `-e` : Create a project folder under OSCP Exam environment with AD and challenge lab machines.
 - `-t` : Create a project folder under OSCP Training environment with AD and challenge lab machines.
+
+**The ```-t``` Flag doesn't like the Practice Boxes A,B and C! Minor Bug. Call them -A-, or anything but a single Capital Letter or it will break**
+
+
 - `--help` : Display usage information.
 
 ### Example
